@@ -17,8 +17,8 @@ body {
 }
 
 .container {
-  width: 80vw;
-  height: 90vh;
+  width: 70vw;
+  height: 85vh;
   background-color: white;
   border-radius: 55px;
 }
@@ -30,6 +30,43 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.credential-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 50px;
+}
+
+.sign-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+#sign-in, #sign-out {
+  width: 340px;
+  height: 75px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--light-blue);
+  cursor: pointer;
+}
+
+#sign-in:hover, #sign-out:hover {
+  background-color: #48687678;
+
+}
+
+#logo-2 {
+  width: 420px;
+  margin-left: 30px;
 }
 
 #logo {
