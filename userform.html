@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Google Sign-In</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-1">
+        <div class="container-1A">
+          <img src="./styles/images/S.png" alt="MatchMySpeed Logo" id="logo" />
+          <h2 id="username">
+            Hi Welcome, <span id="username-variable"></span>
+          </h2>
+        </div>
+        <div class="container-1B">
+          <button>Log Out</button>
+        </div>
+      </div>
+      <div class="container-match">
+        <div class="other-user">
+          <img id="profile-pic" src="./styles/images/luca.jpg" alt="Profile Picture">
+          <h2 id="user-name">Reggie Lapac</h1>
+        </div>
+        <h1>It's A Match!</h1>
+        <p>Looks like you are ready to hit the road! Time to lace up and conquer those miles together. Ready, set, run! </p>
+        <button id="continue"> Continue </button>
+      </div>
+      
+      <div class="container-2">
+        <div class="container-2A">
+          <img
+            src="./styles/images/luca.jpg"
+            alt="User Profile Picture"
+            id="picture"
+          />
+        </div>
+        <div class="container-2B">
+          <form id="biographyForm">
+            <div class="form-group1">
+              <div class="form-group1A">
+                <label for="name" id="form-name">Name</label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              <div class="form-group1A">
+                <label for="age" id="form-age">Age</label>
+                <input type="text" id="age" name="age" required />
+              </div>
+
+              <div class="form-group1A">
+                <label for="experience" id="form-experience">Experience</label>
+                <input type="text" id="experience" name="age" required />
+              </div>
+            </div>
+
+            <div class="form-group2">
+
+              <div class="form-group1A">
+                <label for="biography" id="form-bio">Bio</label>
+                <textarea id="biography" name="biography" required></textarea>
+              </div>
+
+              <div class="form-group1A">
+                <label for="prompt1" id="form-prompt1">I like listening to... when I run</label>
+                <input type="text" id="prompt1" name="exp" required />
+              </div>
+
+              <div class="form-group1A">
+                <label for="prompt2" id="form-prompt2">My proudest achievement is when I...</label>
+                <input type="text" id="prompt2" name="exp" required />
+              </div>
+
+            </div>
+              <button type="submit" id="submit">Save</button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
