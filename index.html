@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Firebase Google Sign-In</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>
-    HELLO
-  </h1>
+  <div class="container">
+    <h1>Sign in with Google</h1>
+    <button id="googleSignIn" class="btn">Sign in with Google</button>
+    <p id="user-info" class="user-info"></p>
+    <button id="signOut" class="btn" style="display:none;">Sign Out</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
-<div>
-  <img src="https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg" alt="Profile Pcture" />
-</div>
