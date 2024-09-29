@@ -132,7 +132,7 @@ body {
   font-weight: 600;
 }
 
-.container-match p {
+.container-match p, #user-data {
   margin: 0;
   font-family: "Poppins";
   font-weight: 400;
@@ -144,7 +144,7 @@ body {
   gap: 40px;
   width: 100%;
   
-}
+} 
 
 .container-2B {
   padding: 30px;
@@ -268,6 +268,29 @@ background-color: var(--grey);
   font-weight: 400;
 }
 
+.yesno {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin: 70px 0px 0px 30px;
+  font-family: 'Poppins';
+}
+.yesno button{
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.yesno button:hover {
+  transform: scale(1.05); 
+  background-color: gray;
+}
+.yesno #yes {
+  background-color: rgba(142, 175, 134, 0.695);
+}
+.yesno #no {
+  background-color: rgba(224, 171, 171, 0.642);
+}
 .credential-container {
   display: flex;
   flex-direction: column;
