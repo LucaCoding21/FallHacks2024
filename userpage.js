@@ -55,6 +55,7 @@ userDocRef.get().then((doc) => {
 // Fetch a random document from the collection, ensuring it's not the current user
 function getRandomDocument(currentUserName) {
   return db.collection('users').get().then((snapshot) => {
+
     const totalDocs = snapshot.size;
     if (totalDocs === 0) {
       console.log("No documents found in the collection");
@@ -157,3 +158,7 @@ document.getElementById('signOut').addEventListener('click', () => {
   localStorage.clear();
   window.location.href ="index.html"
 });
+
+document.getElementById('viewMatches').addEventListener('click',() =>{
+  window.location.href ="chatroom.html"
+})
