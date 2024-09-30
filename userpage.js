@@ -19,7 +19,7 @@ const auth = firebase.auth();
 const storedUserData = localStorage.getItem('userData');
 // Parse the data back to an object (since it's stored as a string)
 const user = JSON.parse(storedUserData);
-
+document.getElementById("username-variable").innerHTML = user.displayName;
 const userDocRef = db.collection('users').doc(user.uid);
 userDocRef.get().then((doc) => {
   if (doc.exists) {

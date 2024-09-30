@@ -24,6 +24,7 @@ const storedUserData = localStorage.getItem('userData');
 // Parse the data back to an object (since it's stored as a string)
 const user = JSON.parse(storedUserData);
 
+
 // Console log the parsed object
 
 const userDocRef = db.collection('users').doc(user.uid);
