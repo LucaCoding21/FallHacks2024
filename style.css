@@ -33,6 +33,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  
+  
 }
 .container-1A {
   display: flex;
@@ -139,10 +141,15 @@ body {
 }
 
 .container-2 {
+  
   display: flex;
+
   flex-direction: row;
   gap: 40px;
   width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* overflow: auto; */
   
 } 
 
@@ -285,10 +292,10 @@ background-color: var(--grey);
   transform: scale(1.05); 
   background-color: gray;
 }
-.yesno #yes {
+.yesno #yesBtn {
   background-color: rgba(142, 175, 134, 0.695);
 }
-.yesno #no {
+.yesno #noBtn {
   background-color: rgba(224, 171, 171, 0.642);
 }
 .credential-container {
@@ -309,7 +316,7 @@ background-color: var(--grey);
   gap: 15px;
 }
 
-#sign-in {
+#googleSignIn {
   width: 340px;
   height: 75px;
   border-radius: 10px;
@@ -322,12 +329,12 @@ background-color: var(--grey);
   color: black;
 }
   
-#sign-in:hover {
+#googleSignIn:hover {
   background-color: #bac7d3;
   transform: scale(1.05); 
 }
 
-#sign-in:active {
+#googleSignIn:active {
   background-color: #bac7d3;
   transform: scale(0.98); 
 }
@@ -353,3 +360,6 @@ background-color: var(--grey);
   color: black;
 }
 
+/* #uid{
+  display:none;
+} */
