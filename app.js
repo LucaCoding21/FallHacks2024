@@ -15,14 +15,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
-
-// real time collection data
-
-
 // Reference to Firebase auth
 const auth = firebase.auth();
-// const userId = firebase.auth().currentUser.uid;
-
 
 // Google Sign-In
 document.getElementById('googleSignIn').addEventListener('click', () => {

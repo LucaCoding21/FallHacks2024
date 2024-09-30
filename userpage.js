@@ -96,6 +96,7 @@ function displayUserProfile(randomDoc) {
   document.getElementById('picture').src = randomDoc.imgLink;
 }
 
+
 document.getElementById('yesBtn').addEventListener('click', () => {
   handleMatchResponse("yes");
   getNextProfile();
