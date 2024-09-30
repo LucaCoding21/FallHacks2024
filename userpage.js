@@ -151,3 +151,8 @@ function getNextProfile() {
     displayUserProfile(randomDoc);
   });
 }
+
+document.getElementById('signOut').addEventListener('click', () => {
+  localStorage.clear();
+  window.location.href ="index.html"
+});

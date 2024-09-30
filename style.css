@@ -363,3 +363,8 @@ background-color: var(--grey);
 /* #uid{
   display:none;
 } */
+
+#picture{
+  width: 200px;
+  height:200px;
+}
