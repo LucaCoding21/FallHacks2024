@@ -1,5 +1,3 @@
-
-
 const biographyForm = document.getElementById('biographyForm');
 // Your Firebase configuration object 
 const firebaseConfig = {
@@ -17,120 +15,88 @@ const db = firebase.firestore();
 
 // Reference to Firebase auth
 const auth = firebase.auth();
-// const userId = firebase.auth().currentUser.uid;
 
 const storedUserData = localStorage.getItem('userData');
-
 // Parse the data back to an object (since it's stored as a string)
 const user = JSON.parse(storedUserData);
 
-// Console log the parsed object
-
 const userDocRef = db.collection('users').doc(user.uid);
-      userDocRef.get().then((doc) => {
-
-        if (doc.exists) {
-          // User exists, check for biography
-          const userData = doc.data();
-          console.log(userData)
-          let currentUserName = userData.name;
-          console.log(currentUserName)
-          console.log(userData.biography);
-    // Get a random document and ensure it's not the same as the current user's name
-          let randomName = getRandomDocument().then((randomDoc) => {
-            let randomName = randomDoc.name;
-
-            // Continue fetching random documents until the name is different
-            while (randomName === currentUserName) {
-              randomName = getRandomDocument().then(doc => doc.name);
-            }
-            // Now that we have a valid random name, you can proceed with any further logic
-          });
-
-          if (!userData.biography) {
-            // Show biography form if biography is not present
-            window.location.href = "userform.html"
-            
-          }
-        } else {
-          // If user doesn't exist, create a new user document
-          userDocRef.set({
-            displayName: user.displayName,
-            email: user.email,
-            biography: "" // Initialize biography as empty
-          }).then(() => {
-            // Show biography form for new users
-            document.getElementById('biographyForm').style.display = 'block';
-          }).catch((error) => {
-            console.error("Error creating user document: ", error);
-          });
-        }
-      }).catch((error) => {
-        console.error("Error fetching user document: ", error);
+userDocRef.get().then((doc) => {
+  if (doc.exists) {
+    // User exists, check for biography
+    const userData = doc.data();
+    let currentUserName = userData.name;
+    if (!userData.biography) {
+      // Show biography form if biography is not present
+      window.location.href = "userform.html";
+    } else {
+      // Fetch a random profile, ensuring it's not the current user's profile
+      getRandomDocument(currentUserName).then((randomDoc) => {
+        displayUserProfile(randomDoc);
       });
-    
-    
-  
-  // Handling the biography form submission
+    }
+  } else {
+    // If user doesn't exist, create a new user document
+    userDocRef.set({
+      displayName: user.displayName,
+      email: user.email,
+      biography: "" // Initialize biography as empty
+    }).then(() => {
+      // Show biography form for new users
+      document.getElementById('biographyForm').style.display = 'block';
+    }).catch((error) => {
+      console.error("Error creating user document: ", error);
+    });
+  }
+}).catch((error) => {
+  console.error("Error fetching user document: ", error);
+});
 
-  // Sign Out
-  // document.getElementById('signOut').addEventListener('click', () => {
-  //   auth.signOut().then(() => {
-  //     document.getElementById('user-info').innerText = '';
-  //     document.getElementById('googleSignIn').style.display = 'block';
-  //     document.getElementById('signOut').style.display = 'none';
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   });
-  // });
-
-
-
-function getRandomDocument() {
-  db.collection('users').get().then((snapshot) => {
+// Fetch a random document from the collection, ensuring it's not the current user
+function getRandomDocument(currentUserName) {
+  return db.collection('users').get().then((snapshot) => {
     const totalDocs = snapshot.size;
-
     if (totalDocs === 0) {
       console.log("No documents found in the collection");
-      return;
+      return null;
     }
 
-    let randomDoc;
-    let randomIndex;
-    
-    do {
-      randomIndex = Math.floor(Math.random() * totalDocs);
-      randomDoc = snapshot.docs[randomIndex].data();
+    let randomDoc = null;
+    let attemptLimit = totalDocs; // Just in case all documents are the current user (though unlikely)
+    while (attemptLimit-- > 0) {
+      const randomIndex = Math.floor(Math.random() * totalDocs);
+      const doc = snapshot.docs[randomIndex];
+      if (doc.data().name !== currentUserName) {
+        randomDoc = doc.data();
+        break;
+      }
+    }
 
-    } while (randomDoc.name == firebase.auth().currentUser.displayName); // Ensure it doesn't show the current user
-
-    console.log("Random Document: ", randomDoc.name);
-    
-
-    // Display the random document in the HTML
-    document.getElementById('user-data1').innerText = randomDoc.name;
-    document.getElementById('user-data2').innerText = randomDoc.age;
-    document.getElementById('user-data3').innerText = randomDoc.exp;
-    document.getElementById('user-data4').innerText = randomDoc.biography;
-    document.getElementById('user-data5').innerText = randomDoc.likeListening;
-    document.getElementById('user-data6').innerText = randomDoc.proudAchievement;
-
-    document.getElementById('fortnite'),innerText = randomDoc.uid;
-    localStorage.setItem('randomdoc.uid', randomDoc.uid);
-
-    console.log("UID stored:", randomDoc.uid);
-    document.getElementById('picture').src = randomDoc.imgLink;
-    
-    // document.getElementById('fortnite').innerText = randomDoc.biography;
-    // document.getElementById('uid').innerText = randomDoc.uid
+    if (!randomDoc) {
+      console.log("Did not find a different user profile.");
+    }
+    return randomDoc;
   }).catch((error) => {
     console.error("Error fetching documents: ", error);
   });
 }
 
+function displayUserProfile(randomDoc) {
+  if (!randomDoc) return; // Exit if there is no random document
+
+  document.getElementById('user-data1').innerText = randomDoc.name;
+  document.getElementById('user-data2').innerText = randomDoc.age;
+  document.getElementById('user-data3').innerText = randomDoc.exp;
+  document.getElementById('user-data4').innerText = randomDoc.biography;
+  document.getElementById('user-data5').innerText = randomDoc.likeListening;
+  document.getElementById('user-data6').innerText = randomDoc.proudAchievement;
+  document.getElementById('fortnite').innerText = randomDoc.uid;
+
+  localStorage.setItem('randomdoc.uid', randomDoc.uid);
+  document.getElementById('picture').src = randomDoc.imgLink;
+}
 
 document.getElementById('yesBtn').addEventListener('click', () => {
-  
   handleMatchResponse("yes");
   getNextProfile();
 });
@@ -138,11 +104,10 @@ document.getElementById('yesBtn').addEventListener('click', () => {
 document.getElementById('noBtn').addEventListener('click', () => {
   getNextProfile();
 });
+
 function handleMatchResponse(response) {
   const currentUser = firebase.auth().currentUser.uid; // Current logged-in user
   const storedUID = localStorage.getItem('randomdoc.uid');
-  console.log(storedUID);
-
   if (!storedUID) {
     console.error("Viewed user is invalid or empty.");
     return; // Exit the function if viewedUser is invalid
@@ -167,10 +132,8 @@ function handleMatchResponse(response) {
   }).then(doc => {
     if (doc.exists) {
       const storedUIDMatches = doc.data().matches || {};
-      console.log(storedUIDMatches);
       if (storedUIDMatches[currentUser] === "yes" && response === "yes") {
         alert("It's a Match!");
-        // You can show a message or perform other actions here
       } else {
         console.log("No Match yet.");
       }
@@ -183,6 +146,8 @@ function handleMatchResponse(response) {
 }
 
 function getNextProfile() {
-  // Call the function to get the next random user profile
-  getRandomDocument();
+  const currentUserName = firebase.auth().currentUser.displayName;
+  getRandomDocument(currentUserName).then((randomDoc) => {
+    displayUserProfile(randomDoc);
+  });
 }
