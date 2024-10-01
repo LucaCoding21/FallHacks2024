@@ -18,6 +18,7 @@ const storedUserData = localStorage.getItem('userData');
 // Parse the data back to an object (since it's stored as a string)
 const user = JSON.parse(storedUserData);
 const userID = user.uid;
+const userName= user.displayName
 console.log(userID);
 const userDocRef = db.collection('users').doc(userID);
 
@@ -55,18 +56,31 @@ const loadMessages = (chatId) => {
           snapshot.forEach((doc) => {
             const messageData = doc.data();
             const li = document.createElement('li');
-            console.log(messageData)
-            li.textContent = `${messageData.senderId}: ${messageData.message}`;
+            console.log(messageData.senderName)
+
+            li.textContent = `${messageData.senderName}: ${messageData.message}`;
             messages.appendChild(li);
           });
         });
 };
-const sendMessage = (chatId, message, senderId) => {
+const sendMessage = async (chatId, message, senderId) => {
+  
+  // Wait for the document to be fetched and the name to be extracted
+  const senderDoc = await db.collection('users').doc(senderId).get();
+  
+  // Get the sender's name
+  const senderName = senderDoc.data().name;
+
+  console.log(senderName);
+
+  // Add the message to the chat, with the resolved senderName
   db.collection('chats').doc(chatId).collection('messages').add({
+    senderName: senderName,
     message: message,
     senderId: senderId,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
+
 };
 getChatId(userID, otherUserID).then(chatId => {
   loadMessages(chatId);
@@ -99,7 +113,7 @@ userDocRef.get().then((doc) => {
     }
     Promise.all(temparray)
       .then((resolvedData) => {
-          console.log(resolvedData); // This will log the resolved values from the promises
+        
           document.getElementById("allMatches").innerHTML = resolvedData.join(", "); // If resolvedData is an array of strings
         })
         .catch((error) => {
