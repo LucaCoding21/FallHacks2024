@@ -48,10 +48,10 @@ body {
   color: white;
   cursor: pointer;
 }
-#heart, #logout {
+#viewMatches, #signOut {
   margin-right: 10px;
 }
-#heart:hover, #logout:hover {
+#viewMatches:hover, #signOut:hover {
   transform: scale(1.05); 
   color: var(--yellow);
 }

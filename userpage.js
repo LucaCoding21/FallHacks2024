@@ -19,7 +19,8 @@ const auth = firebase.auth();
 const storedUserData = localStorage.getItem('userData');
 // Parse the data back to an object (since it's stored as a string)
 const user = JSON.parse(storedUserData);
-document.getElementById("username-variable").innerHTML = user.displayName;
+console.log(user)
+// document.getElementById("username-variable").innerHTML = user.displayName;
 const userDocRef = db.collection('users').doc(user.uid);
 userDocRef.get().then((doc) => {
   if (doc.exists) {
@@ -91,8 +92,6 @@ function displayUserProfile(randomDoc) {
   document.getElementById('user-data4').innerText = randomDoc.biography;
   document.getElementById('user-data5').innerText = randomDoc.likeListening;
   document.getElementById('user-data6').innerText = randomDoc.proudAchievement;
-  document.getElementById('fortnite').innerText = randomDoc.uid;
-
   localStorage.setItem('randomdoc.uid', randomDoc.uid);
   document.getElementById('picture').src = randomDoc.imgLink;
 }
