@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Firebase Google Sign-In</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
     <div class="container">
@@ -16,10 +17,12 @@
           </h2>
         </div>
         <div class="container-1B" id ="viewMatches">
-          <button>View Matches</button>
-        </div>
-        <div class="container-1B" id ="signOut">
-          <button>Log Out</button>
+          <span class="material-symbols-outlined" id="heart">
+            favorite
+          </span>
+          <span class="material-symbols-outlined" id="logout">
+            logout
+          </span>
         </div>
       </div>
       <div class="container-match">
@@ -42,47 +45,46 @@
         </div>
         <div class="container-2B">
             <div class="form-group1">
-              <div class="form-group1A">
-                <label for="name" id="form-name">Name</label>
-
-                <p id="user-data1">Luca William</p>
-              </div>
-
-              <div class="form-group1A">
-                <label for="age" id="form-age">Age</label>
+              <div class="form-group1A-1">
+                <!-- <label for="name" id="form-name">Name</label> -->
+                <p id="user-data1">Luca William</p><p>,</p>
                 <p id="user-data2">30</p>
               </div>
+              <div class="form-group1A-1">
+                <!-- <label for="age" id="form-age">Age</label> -->
+                <p>Experience: </p>
+                <p id="user-data3"> 30</p>
+              </div>
 
-              <div class="form-group1A">
+              <!-- <div class="form-group1A">
                 <label for="experience" id="form-experience">Experience</label>
                 <p id="user-data3">2</p>
-              </div>
+              </div> -->
             </div>
-
             <div class="form-group2">
 
               <div class="form-group1A">
-                <label for="biography" id="form-bio">Bio</label>
+                <label for="biography" id="form-bio">📝 Bio</label>
                 <p id="user-data4">I love Running</p>
               </div>
 
               <div class="form-group1A">
-                <label for="prompt1" id="form-prompt1">I like listening to... when I run</label>
+                <label for="prompt1" id="form-prompt1">🎧 I like listening to... when I run</label>
                 <p id="user-data5">Jazz </p>
               </div>
 
               <div class="form-group1A">
-                <label for="prompt2" id="form-prompt2">My proudest achievement is when I...</label>
+                <label for="prompt2" id="form-prompt2">🏆 My proudest achievement is when I...</label>
                 <p id="user-data6">Pooped</p>
               </div>
-              <p id="fortnite"></p>
+              <!-- <p id="fortnite"></p> -->
             </div>
-            
+            <div class="yesno">
+              <button id="yesBtn">Yes  ✅</button>
+              <button id="noBtn">No  ❌</button>
+          </div>
         </div>
-        <div class="yesno">
-          <button id="yesBtn">Yes  ✅</button>
-          <button id="noBtn">No  ❌</button>
-      </div>
+
       </div>
     </div>
 

@@ -18,27 +18,42 @@ body {
 }
 
 .container {
-  width: 70vw;
-  height: 76vh;
+  width: 90vw;
+  height: 90vh;
   background-color: white;
-  border-radius: 55px;
-  overflow: hidden;
+  border-radius: 20px;
+  overflow-y: scroll;
 }
 
 .container-1 {
   background-color: var(--dark-blue);
-  border-radius: 55px 55px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  
-  
+  position: sticky;
+  top: 0;
 }
 .container-1A {
   display: flex;
   flex-direction: row;
+}
+.container-1B {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 30px;
+  color: white;
+  cursor: pointer;
+}
+#heart, #logout {
+  margin-right: 10px;
+}
+#heart:hover, #logout:hover {
+  transform: scale(1.05); 
+  color: var(--yellow);
 }
 .container-1 button {
   background-color: #e49600;
@@ -104,6 +119,7 @@ body {
   font-weight: 600;
   color: black;
   margin-left: 30px;
+  
 }
 
 #profile-pic {
@@ -134,28 +150,29 @@ body {
   font-weight: 600;
 }
 
-.container-match p, #user-data {
+.container-match p, #user-data4, #user-data5, #user-data6 {
   margin: 0;
   font-family: "Poppins";
   font-weight: 400;
 }
 
 .container-2 {
-  
   display: flex;
-
-  flex-direction: row;
-  gap: 40px;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  /* overflow: auto; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
 } 
 
+.container-2A {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
 .container-2B {
   padding: 30px;
-  width: 40%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,24 +181,41 @@ body {
 .form-group1 {
   display: flex;
   flex-direction: row;
-  margin-top: 30px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 50px;
+  /* margin-top: 30px;
   margin-left: 30px;
-  gap: 30px;
+  gap: 30px; */
 }
 
 .form-group2 {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  margin-left: 30px;
   gap: 30px;
 }
 
 .form-group1A {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+.form-group1A-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 15pt;
 }
 /* ///////// Label Styles ///////// */
+#line {
+  width: 100%;
+  height: 0.2px;
+  background-color: black;
+}
 #form-name {
   font-family: 'Poppins';
   font-weight: bold;
@@ -279,7 +313,7 @@ background-color: var(--grey);
   display: flex;
   flex-direction: row;
   gap: 30px;
-  margin: 70px 0px 0px 30px;
+  margin: 30px 0px 30px 0px;
   font-family: 'Poppins';
 }
 .yesno button{
@@ -346,11 +380,13 @@ background-color: var(--grey);
 }
 
 #logo {
-  width: 80px;
+  width: 50px;
+  height: auto;
   margin-left: 30px;
 }
 #username {
   font-family: "Poppins";
+  font-size: 11pt;
   font-weight: 600;
   color: white;
 }
@@ -365,6 +401,27 @@ background-color: var(--grey);
 } */
 
 #picture{
-  width: 200px;
-  height:200px;
+  width: 100%;
+}
+
+/* responsive */
+
+@media screen and (min-width: 800px) {
+  .container {
+    width: 80vw;
+    height: 70vh;
+  }
+  .container-2 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .container-2B {
+    width: 50%;
+  }
+  .container-2A {
+    height: 550px;
+    width: 550px;
+  }
+  
 }
